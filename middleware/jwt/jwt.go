@@ -1,13 +1,13 @@
 package jwt
 
 import (
+	"github.com/njylll/thirdparty_auxiliary_tool_go/utils"
 	"net/http"
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 
-	"github.com/EDDYCJY/go-gin-example/pkg/e"
-	"github.com/EDDYCJY/go-gin-example/pkg/util"
+	"github.com/njylll/thirdparty_auxiliary_tool_go/pkg/e"
 )
 
 // JWT is jwt middleware
@@ -17,11 +17,18 @@ func JWT() gin.HandlerFunc {
 		var data interface{}
 
 		code = e.SUCCESS
-		token := c.Query("token")
+
+		//取出token
+		token, err := c.Cookie("token")
+		if err != nil {
+			code = e.ERROR_AUTH
+		}
+
+		//校验token
 		if token == "" {
-			code = e.INVALID_PARAMS
+			code = e.ERROR_AUTH
 		} else {
-			_, err := util.ParseToken(token)
+			_, err := utils.ParseToken(token)
 			if err != nil {
 				switch err.(*jwt.ValidationError).Errors {
 				case jwt.ValidationErrorExpired:
@@ -32,6 +39,7 @@ func JWT() gin.HandlerFunc {
 			}
 		}
 
+		//校验token不通过,返回错误
 		if code != e.SUCCESS {
 			c.JSON(http.StatusUnauthorized, gin.H{
 				"code": code,
@@ -43,6 +51,7 @@ func JWT() gin.HandlerFunc {
 			return
 		}
 
+		//校验token通过
 		c.Next()
 	}
 }

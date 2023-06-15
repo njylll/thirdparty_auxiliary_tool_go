@@ -1,14 +1,14 @@
 package qrcode
 
 import (
+	"github.com/njylll/thirdparty_auxiliary_tool_go/utils"
 	"image/jpeg"
 
 	"github.com/boombuler/barcode"
 	"github.com/boombuler/barcode/qr"
 
-	"github.com/EDDYCJY/go-gin-example/pkg/file"
-	"github.com/EDDYCJY/go-gin-example/pkg/setting"
-	"github.com/EDDYCJY/go-gin-example/pkg/util"
+	"github.com/njylll/thirdparty_auxiliary_tool_go/pkg/file"
+	"github.com/njylll/thirdparty_auxiliary_tool_go/pkg/setting"
 )
 
 type QrCode struct {
@@ -53,7 +53,7 @@ func GetQrCodeFullUrl(name string) string {
 
 // GetQrCodeFileName get qr file name
 func GetQrCodeFileName(value string) string {
-	return util.EncodeMD5(value)
+	return utils.EncodeMD5(value)
 }
 
 // GetQrCodeExt get qr file ext

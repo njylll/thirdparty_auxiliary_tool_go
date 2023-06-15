@@ -3,23 +3,23 @@ package main
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"github.com/njylll/thirdparty_auxiliary_tool_go/middleware/redis"
+	"github.com/njylll/thirdparty_auxiliary_tool_go/setting"
+	"github.com/njylll/thirdparty_auxiliary_tool_go/utils"
 	"github.com/sirupsen/logrus"
 	"net/http"
 
-	"github.com/EDDYCJY/go-gin-example/models"
-	"github.com/EDDYCJY/go-gin-example/pkg/gredis"
-	"github.com/EDDYCJY/go-gin-example/pkg/log"
-	"github.com/EDDYCJY/go-gin-example/pkg/setting"
-	"github.com/EDDYCJY/go-gin-example/pkg/util"
-	"github.com/EDDYCJY/go-gin-example/routers"
+	"github.com/njylll/thirdparty_auxiliary_tool_go/models"
+	"github.com/njylll/thirdparty_auxiliary_tool_go/pkg/log"
+	"github.com/njylll/thirdparty_auxiliary_tool_go/routers"
 )
 
 func init() {
 	setting.Setup()
 	models.Setup()
 	//logging.Setup()
-	gredis.Setup()
-	util.Setup()
+	redis.Setup()
+	utils.Setup()
 	log.Setup()
 }
 

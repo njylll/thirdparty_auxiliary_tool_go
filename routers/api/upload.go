@@ -5,10 +5,10 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/EDDYCJY/go-gin-example/pkg/app"
-	"github.com/EDDYCJY/go-gin-example/pkg/e"
-	"github.com/EDDYCJY/go-gin-example/pkg/logging"
-	"github.com/EDDYCJY/go-gin-example/pkg/upload"
+	"github.com/njylll/thirdparty_auxiliary_tool_go/pkg/app"
+	"github.com/njylll/thirdparty_auxiliary_tool_go/pkg/e"
+	"github.com/njylll/thirdparty_auxiliary_tool_go/pkg/logging"
+	"github.com/njylll/thirdparty_auxiliary_tool_go/pkg/upload"
 )
 
 // @Summary Import Image

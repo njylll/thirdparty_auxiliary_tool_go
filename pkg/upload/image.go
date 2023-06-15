@@ -2,16 +2,16 @@ package upload
 
 import (
 	"fmt"
+	"github.com/njylll/thirdparty_auxiliary_tool_go/setting"
+	"github.com/njylll/thirdparty_auxiliary_tool_go/utils"
 	"log"
 	"mime/multipart"
 	"os"
 	"path"
 	"strings"
 
-	"github.com/EDDYCJY/go-gin-example/pkg/file"
-	"github.com/EDDYCJY/go-gin-example/pkg/logging"
-	"github.com/EDDYCJY/go-gin-example/pkg/setting"
-	"github.com/EDDYCJY/go-gin-example/pkg/util"
+	"github.com/njylll/thirdparty_auxiliary_tool_go/pkg/file"
+	"github.com/njylll/thirdparty_auxiliary_tool_go/pkg/logging"
 )
 
 // GetImageFullUrl get the full access path
@@ -23,7 +23,7 @@ func GetImageFullUrl(name string) string {
 func GetImageName(name string) string {
 	ext := path.Ext(name)
 	fileName := strings.TrimSuffix(name, ext)
-	fileName = util.EncodeMD5(fileName)
+	fileName = utils.EncodeMD5(fileName)
 
 	return fileName + ext
 }

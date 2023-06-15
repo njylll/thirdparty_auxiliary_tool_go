@@ -1,47 +1,35 @@
 package api
 
 import (
+	"github.com/njylll/thirdparty_auxiliary_tool_go/dto"
+	"github.com/njylll/thirdparty_auxiliary_tool_go/utils"
 	"net/http"
 
-	"github.com/astaxie/beego/validation"
 	"github.com/gin-gonic/gin"
 
-	"github.com/EDDYCJY/go-gin-example/pkg/app"
-	"github.com/EDDYCJY/go-gin-example/pkg/e"
-	"github.com/EDDYCJY/go-gin-example/pkg/util"
-	"github.com/EDDYCJY/go-gin-example/service/login_service"
+	"github.com/njylll/thirdparty_auxiliary_tool_go/pkg/app"
+	"github.com/njylll/thirdparty_auxiliary_tool_go/pkg/e"
+	"github.com/njylll/thirdparty_auxiliary_tool_go/service/loginservice"
 )
-
-type login struct {
-	Username string `valid:"Required; MaxSize(50)"`
-	Password string `valid:"Required; MaxSize(50)"`
-}
 
 // @Summary Post Login
 // @Produce  json
-// @Param username formData string true "username"
-// @Param password formData string true "password"
+// @Param loginParam body LoginParam true "loginParam"
 // @Success 200 {object} app.Response
 // @Failure 500 {object} app.Response
 // @Router /login [post]
 func PostLogin(c *gin.Context) {
 	appG := app.Gin{C: c}
-	valid := validation.Validation{}
 
-	username := c.PostForm("username")
-	password := c.PostForm("password")
-
-	l := login{Username: username, Password: password}
-	ok, _ := valid.Valid(&l)
-
-	if !ok {
-		app.MarkErrors(valid.Errors)
+	//解析参数
+	revBody := new(dto.LoginParam)
+	if err := c.ShouldBind(revBody); err != nil {
 		appG.Response(http.StatusBadRequest, e.INVALID_PARAMS, nil)
 		return
 	}
 
 	//查询是否有此用户
-	loginService := login_service.Login{Username: username, Password: password}
+	loginService := loginservice.Login{Username: revBody.UserName, Password: revBody.PassWord}
 	isExist, err, usrId := loginService.Check()
 	if err != nil {
 		appG.Response(http.StatusInternalServerError, e.ERROR_AUTH_CHECK_TOKEN_FAIL, nil)
@@ -54,7 +42,7 @@ func PostLogin(c *gin.Context) {
 		return
 	}
 
-	token, err := util.GenerateToken(usrId, password)
+	token, err := utils.GenerateToken(usrId)
 	if err != nil {
 		appG.Response(http.StatusInternalServerError, e.ERROR_AUTH_TOKEN, nil)
 		return

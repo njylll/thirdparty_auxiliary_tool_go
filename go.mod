@@ -7,8 +7,8 @@ require (
 	github.com/EDDYCJY/go-gin-example v0.0.0-20201228125222-28f372bf41f9
 	github.com/antonfisher/nested-logrus-formatter v1.3.1
 	github.com/astaxie/beego v1.9.3-0.20171218111859-f16688817aa4
+	github.com/bitly/go-simplejson v0.5.1
 	github.com/boombuler/barcode v1.0.1-0.20180315051053-3c06908149f7
-	github.com/c4pt0r/ini v0.0.0-20141010045304-47e5250791e5
 	github.com/dgrijalva/jwt-go v3.1.0+incompatible
 	github.com/gin-gonic/gin v1.9.1
 	github.com/go-ini/ini v1.32.1-0.20180214101753-32e4be5f41bb
@@ -24,7 +24,6 @@ require (
 	github.com/tealeg/xlsx v1.0.4-0.20180419195153-f36fa3be8893
 	github.com/unknwon/com v1.0.1
 	gopkg.in/natefinch/lumberjack.v2 v2.2.1
-	github.com/bitly/go-simplejson v0.5.1
 )
 
 require (

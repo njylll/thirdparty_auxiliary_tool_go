@@ -17,7 +17,7 @@ import (
 	"encoding/binary"
 	"github.com/njylll/thirdparty_auxiliary_tool_go/pkg/constdefine"
 	"github.com/njylll/thirdparty_auxiliary_tool_go/pkg/feslib"
-	"github.com/njylll/thirdparty_auxiliary_tool_go/pkg/xiamenprotocol"
+	"github.com/njylll/thirdparty_auxiliary_tool_go/utils"
 	"time"
 )
 
@@ -458,7 +458,7 @@ func UnpackXiaMen(buffer []byte, readerChannel chan []byte, lastRecvTime *int64,
 			}
 			data := buffer[i : i+frameLen+4] //否则的话就取出这一帧
 
-			calCheck := xiamenprotocol.CRC16(data[0 : frameLen+4-2])                // 计算的校验和
+			calCheck := utils.CRC16(data[0 : frameLen+4-2])                         // 计算的校验和
 			getCheck := binary.LittleEndian.Uint16(data[frameLen+4-2 : frameLen+4]) // 报文中的校验和
 			if calCheck != getCheck {
 				feslib.Log("checksum XiaMen err cal", calCheck, "get", getCheck)

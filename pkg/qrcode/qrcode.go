@@ -8,7 +8,7 @@ import (
 	"github.com/boombuler/barcode/qr"
 
 	"github.com/njylll/thirdparty_auxiliary_tool_go/pkg/file"
-	"github.com/njylll/thirdparty_auxiliary_tool_go/pkg/setting"
+	"github.com/njylll/thirdparty_auxiliary_tool_go/setting"
 )
 
 type QrCode struct {

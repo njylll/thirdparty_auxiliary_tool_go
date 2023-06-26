@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/njylll/thirdparty_auxiliary_tool_go/pkg/setting"
+	"github.com/njylll/thirdparty_auxiliary_tool_go/setting"
 )
 
 // getLogFilePath get the log file save path

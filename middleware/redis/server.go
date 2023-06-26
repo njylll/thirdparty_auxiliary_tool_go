@@ -27,17 +27,19 @@ func Setup() {
 	DB10 = new(CRedisClient)
 
 	var err error
+	logrus.Info("开始初始化redis")
 	DB5.Client, err = newRedisClient(DBNUM_5)
 	if err != nil {
-		logrus.Errorf("初始化redisDB5失败, err:%v", err)
+		logrus.Fatalf("初始化redisDB5失败, err:%v", err)
 		return
 	}
 
 	DB10.Client, err = newRedisClient(DBNUM_10)
 	if err != nil {
-		logrus.Errorf("初始化redisDB10失败, err:%v", err)
+		logrus.Fatalf("初始化redisDB10失败, err:%v", err)
 		return
 	}
+	logrus.Info("初始化redis成功")
 
 }
 
@@ -87,16 +89,16 @@ func (c *CRedisClient) hmGet(ctx context.Context, keyStr []interface{}) *gredis.
 	return cmder
 }
 
-func (c *CRedisClient) HGetSomeString(ctx context.Context, str []interface{}) ([]string, error) {
+func (c *CRedisClient) HmGetString(ctx context.Context, str []interface{}) ([]string, error) {
 	var value []string
 	if c.Client == nil {
-		err := fmt.Errorf("%s", "in HGetSomeString redis conn is nil")
+		err := fmt.Errorf("%s", "in HmGetString redis conn is nil")
 		return value, err
 	}
 
 	result, err := c.hmGet(ctx, str).Result()
 	if err != nil {
-		return nil, fmt.Errorf("HGetSomeString 获取redis失败,err: %v", err)
+		return nil, fmt.Errorf("HmGetString 获取redis失败,err: %v", err)
 	}
 	for i, v := range result {
 		//缺值返回错误

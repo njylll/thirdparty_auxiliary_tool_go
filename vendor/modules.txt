@@ -22,6 +22,9 @@ github.com/antonfisher/nested-logrus-formatter
 # github.com/astaxie/beego v1.9.3-0.20171218111859-f16688817aa4
 ## explicit
 github.com/astaxie/beego/validation
+# github.com/bitly/go-simplejson v0.5.1
+## explicit; go 1.17
+github.com/bitly/go-simplejson
 # github.com/boombuler/barcode v1.0.1-0.20180315051053-3c06908149f7
 ## explicit
 github.com/boombuler/barcode
@@ -50,9 +53,6 @@ github.com/bytedance/sonic/loader
 github.com/bytedance/sonic/option
 github.com/bytedance/sonic/unquote
 github.com/bytedance/sonic/utf8
-# github.com/c4pt0r/ini v0.0.0-20141010045304-47e5250791e5
-## explicit
-github.com/c4pt0r/ini
 # github.com/cespare/xxhash/v2 v2.2.0
 ## explicit; go 1.11
 github.com/cespare/xxhash/v2

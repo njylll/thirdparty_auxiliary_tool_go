@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"github.com/njylll/thirdparty_auxiliary_tool_go/middleware/mq"
 	"github.com/njylll/thirdparty_auxiliary_tool_go/middleware/redis"
 	"github.com/njylll/thirdparty_auxiliary_tool_go/setting"
 	"github.com/njylll/thirdparty_auxiliary_tool_go/utils"
@@ -21,6 +22,7 @@ func init() {
 	redis.Setup()
 	utils.Setup()
 	log.Setup()
+	mq.Setup()
 }
 
 // @title Golang Gin API

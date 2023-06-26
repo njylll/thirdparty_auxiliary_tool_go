@@ -4,7 +4,6 @@ import (
 	"github.com/njylll/thirdparty_auxiliary_tool_go/utils"
 	"net/http"
 
-	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 
 	"github.com/njylll/thirdparty_auxiliary_tool_go/pkg/e"
@@ -21,27 +20,22 @@ func JWT() gin.HandlerFunc {
 		//取出token
 		token, err := c.Cookie("token")
 		if err != nil {
-			code = e.ERROR_AUTH
+			code = e.LOGIN_ERR
 		}
 
 		//校验token
 		if token == "" {
-			code = e.ERROR_AUTH
+			code = e.LOGIN_ERR
 		} else {
 			_, err := utils.ParseToken(token)
 			if err != nil {
-				switch err.(*jwt.ValidationError).Errors {
-				case jwt.ValidationErrorExpired:
-					code = e.ERROR_AUTH_CHECK_TOKEN_TIMEOUT
-				default:
-					code = e.ERROR_AUTH_CHECK_TOKEN_FAIL
-				}
+				code = e.LOGIN_ERR
 			}
 		}
 
 		//校验token不通过,返回错误
 		if code != e.SUCCESS {
-			c.JSON(http.StatusUnauthorized, gin.H{
+			c.JSON(http.StatusOK, gin.H{
 				"code": code,
 				"msg":  e.GetMsg(code),
 				"data": data,

@@ -1,4 +1,4 @@
-package xiamenprotocol
+package utils
 
 const (
 	_TABLE_LEN = 256    // crc16查找表长度
